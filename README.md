@@ -59,3 +59,47 @@ These results illustrate how different exposure rules influence stability and ov
 
 ## Project Structure
 
+main.py # Backtest loop, data processing, and visualization
+Strategy_Entry.py # Instant-trend calculations and signal logic
+Strategy_Risk.py # Volatility sizing, RSI aggregation, drawdown regime model
+BTC-1m.csv # OHLC data (not included)
+
+---
+
+## Tools and Libraries
+
+- Python  
+- Pandas  
+- NumPy  
+- Matplotlib  
+- ta.momentum (RSI calculations)  
+- numpy.polyfit  
+- Standard time-series statistical methods
+
+---
+
+## Key Objectives
+
+- Implement custom technical indicators  
+- Test simple signal logic on high-frequency data  
+- Explore volatility-based and drawdown-based risk adjustments  
+- Visualize price, signals, trends, and performance curves  
+- Maintain clear separation between strategy logic and execution  
+- Examine how risk controls influence equity curve behavior  
+
+The project emphasizes experimentation and software structure rather than producing a profitable trading strategy.
+
+---
+
+## Future Extensions
+
+- Add transaction costs and slippage  
+- Compute performance metrics (Sharpe, CAGR, maximum drawdown)  
+- Expand to multi-symbol backtesting  
+- Introduce asynchronous or multiprocessing execution  
+- Add configuration files for parameter management  
+- Improve modularity and testing coverage
+
+
+
+
