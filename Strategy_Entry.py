@@ -13,6 +13,7 @@ def get_signal(close, fast = 0.2, slow = 0.18, plot = False):
 
     signal = [0]
     for i in range(1, len(close)):
+        # HUGE ERROR TO BE CORRECTED LATER
         if (fast[i - 1] < slow[i - 1] and fast[i] > slow[i]):
             signal.append(1) # Bullish
 
