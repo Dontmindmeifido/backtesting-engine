@@ -1,0 +1,7 @@
+{
+    "lookback": 60,
+    "fast": 0.4,
+    "slow": 0.3,
+    "slippage": 0.0,
+    "fee": 0.0
+}

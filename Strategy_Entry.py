@@ -11,15 +11,14 @@ def get_signal(close, fast = 0.2, slow = 0.18, plot = False):
     slow = instant_trend(slow, close)
     fast = instant_trend(fast, close)
 
-    signal = [0]
-    for i in range(1, len(close)):
-        # HUGE ERROR TO BE CORRECTED LATER
-        if (fast[i - 1] < slow[i - 1] and fast[i] > slow[i]):
+    signal = [0, 0]
+    for i in range(2, len(close)):
+        if (fast[i-1] > slow[i-1]):
             signal.append(1) # Bullish
 
             if plot:
                 plt.scatter(i, close[i], color="green", marker="x")
-        elif (fast[i - 1] > slow[i - 1] and fast[i] < slow[i]):
+        elif (fast[i-1] < slow[i-1]):
             signal.append(-1) # Bearish
 
             if plot:

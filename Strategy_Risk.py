@@ -1,10 +1,11 @@
+from Config import config
 import ta.momentum
 import pandas
 import numpy
 
 def std(arr):
     if len(arr) == 0:
-        return 1e8
+        return 0
     
     summ = 0
     average = sum(arr)/len(arr)
@@ -31,16 +32,15 @@ def get_average_rsi(close):
 
     return average_rsi
 
-def get_position_size(returns_log, start_index):
-    lookback = 24
+def get_volatility(returns_log):
+    lookback = config["lookback"]
+    vol = []
 
-    if start_index - lookback < 0: return 0
-
-    inverse_volatility = std(returns_log[start_index - lookback: start_index + 1])
-
-    position_size = 1/inverse_volatility/100
-
-    return position_size
+    for i in range(len(returns_log)):
+        if i - lookback < 0: return 0
+        vol.append(std(returns_log[i - lookback: i + 1]))
+        
+    return vol
 
 def get_drawdown_regime(cumulative_returns, mode):
     drawdowns = []
