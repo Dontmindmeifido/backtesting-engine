@@ -1,4 +1,4 @@
-from Config import config
+from config.config import config
 import ta.momentum
 import pandas
 import numpy
@@ -47,7 +47,7 @@ def get_drawdown_regime(cumulative_returns, mode):
     max_return = -1
     for i in range(len(cumulative_returns)):
         max_return = max(max_return, cumulative_returns[i])
-        drawdowns.append(max_return - cumulative_returns[i]) # drawdown has positive value
+        drawdowns.append(max_return - cumulative_returns[i])
 
     lookback = 30
     direction = 0

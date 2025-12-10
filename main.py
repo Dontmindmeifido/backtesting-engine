@@ -1,8 +1,8 @@
-from Config import config
-from Strategy_Entry import get_signal
-from Exchange import slippage
-from Exchange import fee
-from Performance import sharpe
+from config.config import config
+from signal import get_signal
+from exchange import slippage
+from exchange import fee
+from performance import sharpe
 import math
 import pandas
 import matplotlib.pyplot as plt

@@ -4,13 +4,46 @@ A lightweight Python backtesting engine designed to explore trend-following sign
 
 ---
 
-## Overview
+## Technical Structure
 
-The system processes 1-minute market data, generates trading signals using custom “instant trend” moving averages, applies risk-based position sizing, and visualizes performance through cumulative return plots. The codebase is divided into separate modules to maintain clarity between signal logic, risk logic, and the backtest loop.
+backtesting-engine/
+├── config/                 
+│   ├── config.json         
+│   └── config.py           
+├── visuals/                
+├── .gitignore              
+├── BTC-1m.csv              
+├── exchange.py             
+├── main.py                 
+├── performance.py          
+├── risk.py                
+├── signal.py               
+└── README.md               
+
+
+**main**
+The entry point of the application. It orchestrates the backtesting pipeline by initializing the data loader, injecting configuration parameters, and executing the simulation loop that binds signals to the risk engine.
+
+**signal**
+Encapsulates the core trading logic. It handles the generation of raw directional signals (Long/Short/Neutral) based on trend-following algorithms (e.g., Fast/Slow Moving Average crossovers) independent of position sizing.
+
+**risk**
+Implements the risk management overlay. This module dynamically calculates position sizing.
+
+**performance**
+The analytics engine. It computes key performance metrics (Cumulative Return, Drawdown depths) and utilizes Matplotlib to render diagnostic visualizations, including equity curves and regime-change markers.
+
+**exchange**
+Handles data ingestion and order simulation. It simulates the execution of trade orders against historical price action under fees and slippage.
+
+**config**
+Separates code from configuration. Contains JSON-based parameters for strategy sensitivity (e.g., lookback periods, risk thresholds, ...), allowing for rapid experimentation without modifying the codebase.
 
 ---
 
-## Signal Generation
+## Performance Results for Naive Strategy
+
+**Signal Generation**
 
 Signals are produced using two instant-trend moving averages with different speeds.  
 A long or short signal is issued when the fast trend crosses the slow trend.
@@ -26,7 +59,7 @@ This plot is used to verify whether the indicator and signal logic behave as int
 
 ---
 
-## Risk Management
+**Risk Management**
 
 ### Volatility-Based Position Sizing  
 Position size is determined using a rolling volatility estimate derived from log returns.  
@@ -39,8 +72,7 @@ A polynomial fit is applied to recent drawdown values to estimate the slope of t
 
 ---
 
-## Performance Results
-
+**Performance**
 Two cumulative return curves are generated for comparison:
 
 1. **Simple Strategy (volatility sizing only)**  
@@ -48,35 +80,32 @@ Two cumulative return curves are generated for comparison:
    Despite the smoother profile, the variability suggests modest risk-adjusted returns.
 
 2. **Drawdown-Adjusted Strategy**  
-   Reduces exposure during deeper drawdown periods.  
-   In this configuration, the adjustment lowers overall performance and results in a more conservative equity curve.
+   Exposure directly proportional to current drawdown.  
+   In this configuration, the adjustment lowers overall performance and results in a more conservative equity curve, which was to be expected.
 
 ![Equity Curves](Visuals/Strategies_Return.png)
 
-These results illustrate how different exposure rules influence stability and overall performance, even when they reduce returns.
+These results (over a period of 7 years) illustrate how different exposure rules influence stability and overall performance, even when they reduce returns.
 
 ---
 
-## Tools and Libraries
+## Libraries and Tools
 
 - Python  
 - Pandas  
 - NumPy  
 - Matplotlib  
-- ta.momentum (RSI calculations)  
-- numpy.polyfit  
+- Ta
+- Numpy 
+
 - Standard time-series statistical methods
 
 ---
 
 ## Future Extensions
 
-- Add transaction costs and slippage  
-- Compute performance metrics (Sharpe, CAGR, maximum drawdown)  
 - Expand to multi-symbol backtesting  
 - Introduce asynchronous or multiprocessing execution  
-- Add configuration files for parameter management  
-- Improve modularity and testing coverage
 
 
 
