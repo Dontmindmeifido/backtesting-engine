@@ -6,7 +6,7 @@ A lightweight Python backtesting engine designed to explore trend-following sign
 
 ## Technical Structure
 
-backtesting-engine/ 
+backtesting-engine/  
 ├── config/                 
 │   ├── config.json         
 │   └── config.py           
