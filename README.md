@@ -57,8 +57,6 @@ This plot is used to verify whether the indicator and signal logic behave as int
 
 ![Price Timeseries](visuals/Timeseries.png)
 
--
-
 ### Risk Management  
 
 **Volatility-Based Position Sizing**  
