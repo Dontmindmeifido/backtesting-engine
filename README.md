@@ -21,22 +21,22 @@ backtesting-engine/
 └── README.md               
 
 
-**main** 
+**Main**  
 The entry point of the application. It orchestrates the backtesting pipeline by initializing the data loader, injecting configuration parameters, and executing the simulation loop that binds signals to the risk engine.
 
-**signal** 
+**Signal**  
 Encapsulates the core trading logic. It handles the generation of raw directional signals (Long/Short/Neutral) based on trend-following algorithms (e.g., Fast/Slow Moving Average crossovers) independent of position sizing.
 
-**risk** 
+**Risk**  
 Implements the risk management overlay. This module dynamically calculates position sizing.
 
-**performance** 
+**Performance**  
 The analytics engine. It computes key performance metrics (Cumulative Return, Drawdown depths) and utilizes Matplotlib to render diagnostic visualizations, including equity curves and regime-change markers.
 
-**exchange** 
+**Exchange**  
 Handles data ingestion and order simulation. It simulates the execution of trade orders against historical price action under fees and slippage.
 
-**config** 
+**Config**  
 Separates code from configuration. Contains JSON-based parameters for strategy sensitivity (e.g., lookback periods, risk thresholds, ...), allowing for rapid experimentation without modifying the codebase.
 
 ---
